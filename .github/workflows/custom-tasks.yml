@@ -1,0 +1,23 @@
+name: Custom Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  custom-task:
+    name: Perform Custom Task
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Custom Script
+        run: |
+          # Add commands to perform the custom task
+          echo "Performing custom task..."
+          # For example: python generate_release_notes.py
+
+      # Add more steps as needed

@@ -1,0 +1,53 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    name: Deploy to Heroku
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ secrets.HEROKU_APP_URL }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Login to Heroku
+        uses: actions/heroku@v2
+        with:
+          email: ${{ secrets.HEROKU_EMAIL }}
+          api-key: ${{ secrets.HEROKU_API_KEY }}
+
+      - name: Deploy to Heroku
+        run: |
+          git push https://heroku:$HEROKU_API_KEY@heroku.com/$HEROKU_APP_NAME.git main:main
