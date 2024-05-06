@@ -1,16 +1,16 @@
--name: Dependency Updates
+name: Dependency Updates
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC, adjust as needed
 
 jobs:
-  test:
-    name: Run Tests
+  dependency_updates:
+    name: Check and Update Dependencies
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -18,8 +18,18 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
+      - name: Update Dependencies
+        run: |
+          npm outdated --json > outdated.json
+          node updateDependencies.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Automated Dependency Updater"
+          git config --global user.email "dependabot@example.com"
+          git add .
+          git commit -m "chore: Update dependencies"
+          git push origin main
