@@ -2,11 +2,11 @@ name: Dependency Updates
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC, adjust as needed
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
 
 jobs:
-  dependency_updates:
-    name: Check and Update Dependencies
+  update_dependencies:
+    name: Update Dependencies
     runs-on: ubuntu-latest
 
     steps:
@@ -18,18 +18,9 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install Dependabot
+        run: npm install -g dependabot
 
-      - name: Update Dependencies
-        run: |
-          npm outdated --json > outdated.json
-          node updateDependencies.js
+      - name: Run Dependabot
+        run: dependabot
 
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "Automated Dependency Updater"
-          git config --global user.email "dependabot@example.com"
-          git add .
-          git commit -m "chore: Update dependencies"
-          git push origin main
