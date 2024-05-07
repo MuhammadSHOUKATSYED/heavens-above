@@ -35,7 +35,7 @@ jobs:
         run: npm test
 
       - name: Provide feedback on pull request
-        uses: pullreminders/comment-on-pull-request
+        uses: pullreminders/comment-on-pull-request@v1
         with:
           message: |
             ## Code Review Results
