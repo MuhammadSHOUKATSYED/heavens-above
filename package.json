@@ -8,7 +8,7 @@
     "start": "node run.js",
     "generate-release-notes": "node generate-release-notes.js",
     "build-docs": "npm run",
-    "lint": "eslint .",
+    "lint": "eslint",
     "code-quality": "sonar-scanner"
   },
   "dependencies": {
