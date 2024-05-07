@@ -1,4 +1,4 @@
-name: Custom Workflow
+name: Generate Release Notes
 
 on:
   push:
@@ -6,18 +6,22 @@ on:
       - main
 
 jobs:
-  custom-task:
-    name: Perform Custom Task
+  generate_release_notes:
+    name: Generate Release Notes
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Run Custom Script
-        run: |
-          # Add commands to perform the custom task
-          echo "Performing custom task..."
-          # For example: python generate_release_notes.py
+      - name: Install dependencies
+        run: npm install
 
-      # Add more steps as needed
+      - name: Generate release notes
+        run: npm run generate-release-notes
+
+      - name: Save release notes as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-notes
+          path: release-notes.md
