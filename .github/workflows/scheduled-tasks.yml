@@ -1,0 +1,33 @@
+name: Scheduled Tasks
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs at 12:00 AM UTC every day
+
+jobs:
+  perform-tasks:
+    name: Perform Scheduled Tasks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Clear cache
+      - name: Clear Cache
+        run: |
+          # Replace this command with the actual command to clear cache
+          npm cache clean --force
+
+      # Perform Data Backup
+      - name: Perform Data Backup
+        run: |
+          # Replace this command with the actual command to perform data backup
+          mkdir -p backups
+          cp -r data backups/data-$(date +"%Y-%m-%d")
+
+      # Notify about task completion
+      - name: Send Notification
+        run: |
+          # Replace this command with the actual command to send notifications
+          echo "Tasks completed. Notifications sent."
