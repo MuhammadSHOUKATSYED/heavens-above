@@ -42,5 +42,3 @@ jobs:
             - Linting and code quality checks: Pass
             - Security vulnerability scanning: Pass
             - Tests: Pass
-      - name: Comment on pull request
-        run: node comment-on-pull-request.js
