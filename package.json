@@ -9,7 +9,7 @@
     "generate-release-notes": "node generate-release-notes.js",
     "build-docs": "npm run",
     "lint": "eslint .",
-    "code-quality": "npm run"
+    "code-quality": "sonar-scanner"
   },
   "dependencies": {
     "@octokit/rest": "^20.1.1",
