@@ -2,32 +2,32 @@ name: Scheduled Tasks
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs every day at midnight UTC
+    - cron: '0 0 * * *' # Runs at 12:00 AM UTC every day
 
 jobs:
-  maintenance:
-    name: Daily Maintenance
+  perform-tasks:
+    name: Perform Scheduled Tasks
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      # Clear cache
+      - name: Clear Cache
+        run: |
+          # Replace this command with the actual command to clear cache
+          npm cache clean --force
 
-      - name: Run database backup
-        run: 
-          # Example command to perform database backup
-          # Replace this with your actual database backup command
-          echo "Performing database backup..."
-          npm run backup-database
-      - name: Clean up temporary files
-        run: 
-          # Example command to clean up temporary files
-          # Replace this with your actual command to clean up files
-          echo "Cleaning up temporary files..."
-          rm -rf /tmp/*
-      # Add more maintenance tasks as needed
+      # Perform Data Backup
+      - name: Perform Data Backup
+        run: |
+          # Replace this command with the actual command to perform data backup
+          mkdir -p backups
+          cp -r data backups/data-$(date +"%Y-%m-%d")
+
+      # Notify about task completion
+      - name: Send Notification
+        run: |
+          # Replace this command with the actual command to send notifications
+          echo "Tasks completed. Notifications sent."
