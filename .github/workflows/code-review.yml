@@ -1,49 +1,44 @@
-name: Code Review Workflow
+name: Code Review
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  lint:
-    name: Linting
+  code-review:
+    name: Code Review
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run linter
-        run: npm run lint
+      - name: Run linting and code quality checks
+        run: npm run lint && npm run code-quality
 
-  test:
-    name: Testing
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
+      - name: Run security vulnerability scanning
+        run: npm audit
 
       - name: Run tests
         run: npm test
 
-  security-scan:
-    name: Security Scanning
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run security scan
-        uses: actions/scan@v1
+      - name: Provide feedback on pull request
+        uses: pullreminders/comment-on-pull-request
+        with:
+          message: |
+            ## Code Review Results
+            - Linting and code quality checks: Pass
+            - Security vulnerability scanning: Pass
+            - Tests: Pass
