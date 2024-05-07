@@ -4,32 +4,56 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  code-review:
-    name: Code Review
+  build:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
-
+      
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-
+          node-version: 14
+      
       - name: Install Dependencies
         run: npm install
-
+      
       - name: Run linting and code quality checks
         run: npm run lint && npm run code-quality
 
       - name: Run security vulnerability scanning
         run: npm audit
-
-      - name: Run tests
+      
+      - name: Run Tests
         run: npm test
+      
+      # Add additional steps for linting, code coverage, etc. as needed
+   
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      - name: Run linting and code quality checks
+        run: npm run lint && npm run code-quality
+
+      - name: Run security vulnerability scanning
+        run: npm audit
+      
+
+      
