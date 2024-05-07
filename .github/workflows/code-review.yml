@@ -34,11 +34,13 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Comment on pull request
-        run: node comment-on-pull-request.js
+      - name: Provide feedback on pull request
+        uses: pullreminders/comment-on-pull-request@v1
         with:
           message: |
             ## Code Review Results
             - Linting and code quality checks: Pass
             - Security vulnerability scanning: Pass
             - Tests: Pass
+      - name: Comment on pull request
+        run: node comment-on-pull-request.js

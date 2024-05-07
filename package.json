@@ -6,9 +6,10 @@
   "main": "run.js",
   "scripts": {
     "start": "node run.js",
-    "generate-release-notes": "node generate-release-notes.js"
+    "generate-release-notes": "node generate-release-notes.js",
   },
   "dependencies": {
+    "@octokit/rest": "^20.1.1",
     "cheerio": "^1.0.0-rc.3",
     "request": "^2.88.2"
   },
@@ -29,5 +30,4 @@
   "engines": {
     "node": ">=12.10.0"
   }
-  
 }
