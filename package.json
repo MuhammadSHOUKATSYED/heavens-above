@@ -6,7 +6,8 @@
   "main": "run.js",
   "scripts": {
     "start": "node run.js",
-    "generate-release-notes": "node generate-release-notes.js"
+    "generate-release-notes": "node generate-release-notes.js",
+    "build-docs": "your-build-command"
   },
   "dependencies": {
     "@octokit/rest": "^20.1.1",
