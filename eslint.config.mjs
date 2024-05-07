@@ -7,4 +7,12 @@ export default [
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,
   pluginReactConfig,
+  {
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  }
+  
 ];
