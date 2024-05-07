@@ -1,0 +1,44 @@
+Release Notes:
+
+1. Errors resolved
+2. Errors resolved
+3. Errors resolved
+4. Errors resolved
+5. Errors resolved
+6. Errors resolved
+7. Errors resolved
+8. Add github workflows
+9. Drop $.ajax
+10. Update docs
+11. Use searchParams
+12. Run lebab
+13. Update CDN version
+14. Update
+15. Update HTML
+16. Update
+17. Drop async
+18. Drop async
+19. Rename `count` -> `pages`
+20. Rename `base` -> `utils`
+21. Update Bootstrap version
+22. Use ES6 syntax
+23. Replace deprecated `fs.exists`
+24. Use node-qrcode
+25. Use strict comparison operators
+26. Update package.json
+27. Update API URL
+28. Code style update
+29. Remove TianGong
+30. Export to Word
+31. Update README
+32. Refactor async
+33. Improve code style
+34. Code style update
+35. Bug fix: global variable
+36. Remove php part
+37. Using template literals
+38. Download images
+39. New feature
+40. Updated satellite.js
+41. First commit
+42. Initial commit
